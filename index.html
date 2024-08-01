@@ -1,0 +1,76 @@
+<!-- most recent -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randomize Text Position</title>
+    <style>
+        body {
+            background-color: lightblue;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        #text {
+            font-size: 40px;
+            color: black;
+        }
+        #fileInput {
+            margin-bottom: 20px;
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body onload="Init()">
+    <div id="text"> </div>
+
+    <input type="file" id="fileInput" />
+   
+    <script>
+        let fileData = '';
+
+        function Init() {
+            document.getElementById('fileInput').addEventListener('change', handleFileSelect);
+        }
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                fileData = event.target.result;
+                console.log('File data read successfully:', fileData);
+                startRandomizing();
+            };
+
+            reader.readAsText(file);
+        }
+
+        function startRandomizing() {
+            const words = fileData.split(/\s+/);
+            console.log('made it he')
+            const textElement = document.getElementById('text');
+            let index = 0;
+
+
+            setInterval(function() {
+                console.log('here again')
+                if (index < words.length) {
+                    textElement.textContent = words[index];
+                    index++;
+                } else {
+                    index = 0; // Reset index if you want to loop through the words
+                }
+            }, variable);
+
+
+        }
+    </script>
+</body>
+</html>
