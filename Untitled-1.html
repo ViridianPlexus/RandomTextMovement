@@ -1,5 +1,3 @@
-<!-- most recent -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,21 +15,18 @@
             flex-direction: column;
         }
         #text {
-            font-size: 40px;
+            font-size: 24px;
             color: black;
         }
         #fileInput {
             margin-bottom: 20px;
-            position: fixed;
-            bottom: 0;
         }
     </style>
 </head>
 <body onload="Init()">
-    <div id="text"> </div>
-
     <input type="file" id="fileInput" />
-   
+    <div id="text"></div>
+
     <script>
         let fileData = '';
 
@@ -54,23 +49,18 @@
 
         function startRandomizing() {
             const words = fileData.split(/\s+/);
-            console.log('made it he')
+            console.log('made it here')
             const textElement = document.getElementById('text');
             let index = 0;
-            const intervalTime = 16; // Interval duration in milliseconds
 
-            // Assuming words is an array of strings and textElement is a reference to an HTML element
-            const intervalId = setInterval(function() {
-                console.log('here again');
+            setInterval(function() {
                 if (index < words.length) {
                     textElement.textContent = words[index];
                     index++;
                 } else {
-                    textElement.textContent = 'done';
-                    clearInterval(intervalId); // Stop the interval when done
+                    index = 0; // Reset index if you want to loop through the words
                 }
-            }, intervalTime);
-            textElement.textContent = 'done';
+            }, 200);
         }
     </script>
 </body>

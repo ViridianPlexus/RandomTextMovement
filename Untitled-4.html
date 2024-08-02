@@ -1,0 +1,43 @@
+<!-- working -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randomize Text Position</title>
+    <style>
+        body {
+            background-color: lightblue;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #text {
+            font-size: 24px;
+            color: black;
+        }
+    </style>
+</head>
+<body onload="Init()">
+    <div id="text"></div>
+
+    <script>
+        let textElement;
+        const words = ["Hello", "World", "JavaScript", "Random", "Text", "Position", "Movement", "Dynamic", "Example", "Coding"];
+
+        function Init() {
+            textElement = document.getElementById("text");
+            setInterval(moveIt, 200);
+        }
+
+        function moveIt() {
+            const randomWord = words[Math.floor(Math.random() * words.length)];
+            textElement.textContent = randomWord;
+        }
+    </script>
+</body>
+</html>
+    
