@@ -28,6 +28,8 @@
     </style>
 </head>
 <body onload="Init()">
+
+    <h1 id ='speed'> </h1>
     <div id="text"> </div>
 
     <input type="file" id="fileInput" />
@@ -53,21 +55,49 @@
         }
 
         function startRandomizing() {
+
+            let runthru = 0
+
             const words = fileData.split(/\s+/);
             console.log('made it he')
             const textElement = document.getElementById('text');
+            const speedelement = document.getElementById('speed');
             let index = 0;
-            const intervalTime = 16; // Interval duration in milliseconds
+            let i = 0
+            let intervalTime = 16; // Interval duration in milliseconds
+            speedArr = ['max', 'fast', 'medium', 'slow', 'slowx2', 'slow3']
+
 
             // Assuming words is an array of strings and textElement is a reference to an HTML element
             const intervalId = setInterval(function() {
-                console.log('here again');
+                // console.log('here again');
                 if (index < words.length) {
+                    // console.log('deeper');
+                    console.log(index)
+                    console.log(intervalTime)
                     textElement.textContent = words[index];
+                    speedelement.textContent = speedArr[i]
                     index++;
+                    
                 } else {
+                    console.log('in here');
                     textElement.textContent = 'done';
-                    clearInterval(intervalId); // Stop the interval when done
+                    
+                    runthru++;
+                    if(!(runthru<6)){
+                        clearInterval(intervalId); // Stop the interval when done
+                    }else{
+                        console.log('in the deep mainframe')
+                        i++;
+                        speedelement.textContent += speedArr[i] 
+                        intervalTime+=16.67;
+                        index= 0;
+
+
+
+                        
+                    }
+                    index= 0;
                 }
             }, intervalTime);
             textElement.textContent = 'done';
